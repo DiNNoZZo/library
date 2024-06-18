@@ -9,11 +9,32 @@ module.exports = {
         type: Sequelize.INTEGER,
         field: 'id'
       },
-      username: {
+      libraryId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        reference: {
+          model: 'libraries',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'library_id',
+      },
+      firstName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        field: 'first_name'
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        field: 'last_name'
+      },
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true,
-        field: 'username'
+        field: 'email'
       },
       password: {
         type: Sequelize.STRING,
@@ -21,7 +42,7 @@ module.exports = {
         field: 'password'
       },
       role: {
-        type: Sequelize.ENUM('student', 'librarian'),
+        type: Sequelize.ENUM('student', 'admin', 'superadmin'),
         allowNull: false,
         field: 'role'
       },
@@ -30,12 +51,6 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.NOW,
         field: 'registered_at'
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-        field: 'created_at'
       },
       updatedAt: {
         allowNull: false,

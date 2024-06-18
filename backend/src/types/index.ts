@@ -1,0 +1,1 @@
+export enum ROLE {'superadmin', 'admin', 'student'};

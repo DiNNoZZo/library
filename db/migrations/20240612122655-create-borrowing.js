@@ -1,61 +1,50 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('loans', {
+    await queryInterface.createTable('borrowings', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
-        field: 'id'
-      },
-      bookId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'books',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-        allowNull: false,
-        field: 'book_id'
+        field: 'id',
       },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: 'users',
-          key: 'id'
+          key: 'id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
+        field: 'user_id',
+      },
+      bookId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'user_id'
+        references: {
+          model: 'books',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        field: 'book_id',
       },
       borrowedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: 'borrowed_at'
+        defaultValue: Sequelize.NOW,
+        field: 'borrowed_at',
       },
       returnedAt: {
         type: Sequelize.DATE,
         allowNull: true,
-        field: 'returned_at'
+        field: 'returned_at',
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-        field: 'created_at'
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW,
-        field: 'updated_at'
-      }
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('loans');
-  }
+    await queryInterface.dropTable('borrowings');
+  },
 };

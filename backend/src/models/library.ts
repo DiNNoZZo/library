@@ -27,12 +27,12 @@ export class Library extends Model<LibraryAttributes, LibraryCreationAttributes>
           field: 'id',
         },
         name: {
-          type: new DataTypes.STRING(128),
+          type: new DataTypes.STRING(255),
           allowNull: false,
           field: 'name',
         },
         location: {
-          type: new DataTypes.STRING(128),
+          type: new DataTypes.STRING(255),
           allowNull: false,
           field: 'location',
         },
