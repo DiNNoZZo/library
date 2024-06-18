@@ -10,6 +10,7 @@ export interface BookAttributes {
   libraryId: number;
   createdAt: Date;
   updatedAt: Date;
+  quantity: number;
 }
 
 export type BookCreationAttributes = Optional<BookAttributes, 'id'>;
@@ -22,23 +23,24 @@ export class Book extends Model<BookAttributes, BookCreationAttributes> implemen
   public libraryId!: number;
   public createdAt!: Date;
   public updatedAt!: Date;
+  public quantity!: number;
 
   static initModel(sequelize: Sequelize): typeof Book {
     return Book.init(
       {
         id: {
-          type: DataTypes.INTEGER.UNSIGNED,
+          type: DataTypes.INTEGER,
           autoIncrement: true,
           primaryKey: true,
           field: 'id',
         },
         title: {
-          type: new DataTypes.STRING(128),
+          type: new DataTypes.STRING(255),
           allowNull: false,
           field: 'title',
         },
         author: {
-          type: new DataTypes.STRING(128),
+          type: new DataTypes.STRING(255),
           allowNull: false,
           field: 'author',
         },
@@ -48,13 +50,18 @@ export class Book extends Model<BookAttributes, BookCreationAttributes> implemen
           field: 'isbn',
         },
         libraryId: {
-          type: DataTypes.INTEGER.UNSIGNED,
+          type: DataTypes.INTEGER,
           allowNull: false,
           references: {
             model: Library,
             key: 'id',
           },
           field: 'library_id',
+        },
+        quantity: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+          defaultValue: 1,
         },
         createdAt: {
           type: DataTypes.DATE,

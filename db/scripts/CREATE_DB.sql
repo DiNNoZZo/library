@@ -8,5 +8,5 @@ BEGIN
 END $$;
 
 -- Optional: Drop the schema if you want to recreate it
-DROP SCHEMA IF EXISTS library CASCADE;
-CREATE SCHEMA library;
+-- DROP SCHEMA IF EXISTS library CASCADE;
+-- CREATE SCHEMA library;

@@ -35,6 +35,12 @@ module.exports = {
         allowNull: false,
         field: 'library_id'
       },
+      quantity: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+        field: 'quantity',
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
