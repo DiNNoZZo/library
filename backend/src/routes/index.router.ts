@@ -16,5 +16,3 @@ router.use("/libraries", librariesRouter);
 router.use("/users", usersRouter);
 
 export default router;
-
-//test rules on git
