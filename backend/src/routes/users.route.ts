@@ -1,8 +1,7 @@
-// src/routes/userRoutes.ts
 import { Router } from 'express';
 import { models } from '../config/db';
 
-const { User, Library } = models;
+const { User } = models;
 const router = Router();
 
 router.post('/', async (req, res) => {
@@ -16,8 +15,7 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await Library.findAll();
-    console.log("user",users);
+    const users = await User.findAll();
     
     res.send({data: users});
   } catch (e) {
